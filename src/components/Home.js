@@ -1,6 +1,5 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
-import NewsHeading from "./NewsHeading";
 import WithListLoading from "./WithListLoading";
 import List from "./List";
 
@@ -27,7 +26,8 @@ function Home(){
 
   return (
     <div>
-      <ListLoading isLoading={appState.loading} news={appState.news} />
+      {/* <ListLoading isLoading={appState.loading} news={appState.news} /> */}
+      <p>Home</p>
     </div>
   )
 }

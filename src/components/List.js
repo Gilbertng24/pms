@@ -3,8 +3,6 @@ import { nanoid } from 'nanoid';
 
 const List = (props) => {
   const { news } = props;
-
-
   if (!news || news.length === 0) return <p>No todos, sorry</p>;
   return (
     <div className="container-fluid position-absolute bottom-0 start-0 bg-primary">
