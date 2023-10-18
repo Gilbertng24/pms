@@ -22,7 +22,7 @@ function Home(){
       setAppState({ loading: false, news: res.data.articles.slice(0,4) })
     }
     fetchData();
-  }, [setAppState])
+  }, [])
 
   return (
     <div>

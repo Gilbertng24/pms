@@ -1,0 +1,33 @@
+{
+  "navbar": {
+    "company": "Système de gestion immobilière de Gilbert",
+    "home": "Maison",
+    "resident": "le résident",
+    "locker": "Casier",
+    "fob": "Gousset",
+    "about": "À propos",
+    "search": "Recherche",
+    "go": "Aller"
+  },
+  "resident": {
+    "title": "Nouveau résident",
+    "personalInformation": "Informations personnelles",
+    "gender": {
+      "gender": "genre",
+      "options": "--Choisissez une option--",
+      "male": "mâle",
+      "female": "Female",
+      "other": "Autre"
+    },
+    "firstName": "Prénom",
+    "lastName": "Nom de famille",
+    "phoneNo": "Numéro de téléphone",
+    "email": "E-mail",
+    "description": "Description",
+    "addResident": "Ajouter un résident",
+    "message":{
+      "phoneTenDigit": "Le numéro de téléphone doit comporter 10 chiffres.",
+      "emailInvalid": "Le courriel est invalide"
+    }
+  }
+}

@@ -6,12 +6,13 @@ import Home from './components/Home';
 import About from './components/About';
 import Error from './components/Error';
 import News from './components/News';
+import Resident from './components/Resident';
 
 function App() {
 
   useEffect(() => {
     // This function will run when the component is first loaded
-    console.log('Page has been refreshed or loaded for the first time');
+    console.log('App.....Page has been refreshed or loaded for the first time');
   }, []);
 
   return (
@@ -20,6 +21,7 @@ function App() {
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/about" component={About} />
+        <Route path="/resident" component={Resident} />
         <Route component={Error} />
       </Switch>
       <News />

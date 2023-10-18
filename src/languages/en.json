@@ -1,0 +1,33 @@
+{
+  "navbar": {
+    "company": "Gilbert's Property Management System",
+    "home": "Home",
+    "resident": "Resident",
+    "locker": "Locker",
+    "fob": "Fob",
+    "about": "about",
+    "search": "Search",
+    "go": "Go"
+  },
+  "resident": {
+    "title": "New Resident",
+    "personalInformation": "Personal Information",
+    "gender": {
+      "gender": "gender",
+      "options": "--Choose an option--",
+      "male": "Male",
+      "female": "Female",
+      "other": "Other"  
+    },
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phoneNo": "Phone Number",
+    "email": "Email",
+    "description": "Description",
+    "addResident": "Add Resident",
+    "message":{
+      "phoneTenDigit": "Phone number must be 10 digits.",
+      "emailInvalid": "Email is invalid"
+    }
+  }
+}
