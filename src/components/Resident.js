@@ -3,7 +3,7 @@ import { useLanguage } from "./LanguageProvider";
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 
-function Resident(){
+function Resident({updateIsUpdating, updateNewResident}){
 
   const [firstName,setFirstName] = useState("");
   const [lastName,setLastName] = useState("");
@@ -24,7 +24,9 @@ function Resident(){
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    //console.log(firstName + " " + lastName);
+    console.log(firstName + "... " + lastName);
+    updateNewResident(firstName, lastName, gender, phoneNo, email, description);
+    updateIsUpdating(false);
   }
 
   //phone number
@@ -168,7 +170,23 @@ function Resident(){
 
         </fieldset>
 
-        <button type="submit" className="btn btn-primary">{translate("resident.addResident")}</button>
+        <button 
+          type="submit" 
+          className="btn btn-primary me-3"
+
+        >
+          {translate("resident.addResident")}
+        </button>
+
+        <button 
+          type="button" 
+          className="btn btn-primary"
+          onClick={() => {updateIsUpdating(false)}}
+        >
+          {translate("resident.cancel")}
+        </button>
+
+
       </form>
     </div>
 

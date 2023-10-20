@@ -9,6 +9,25 @@
     "search": "Search",
     "go": "Go"
   },
+  "residents": {
+    "filterBy": "Filter by",
+    "newResident": "New Resident",
+    "personalInformation": "Personal Information",
+    "gender": "gender",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phoneNo": "Phone Number",
+    "email": "Email",
+    "description": "Description",
+    "addResident": "Add Resident",
+    "message":{
+      "phoneTenDigit": "Phone number must be 10 digits.",
+      "emailInvalid": "Email is invalid"
+    },
+    "resident": "resident",
+    "residents": "residents",
+    "actions": "Actions"
+  },
   "resident": {
     "title": "New Resident",
     "personalInformation": "Personal Information",
@@ -28,6 +47,7 @@
     "message":{
       "phoneTenDigit": "Phone number must be 10 digits.",
       "emailInvalid": "Email is invalid"
-    }
+    },
+    "cancel": "Cancel"
   }
 }

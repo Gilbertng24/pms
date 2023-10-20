@@ -28,7 +28,7 @@ function Navbar(){
         <div className="collapse navbar-collapse" id="navbar_pms_toggler">
           <div className="navbar-nav navbar-nav-scroll ms-auto">
             <Link to="/" className="nav-item nav-link active" aria-current="page">{translate("navbar.home")}</Link>
-            <Link to="/resident" className="nav-item nav-link">{translate("navbar.resident")}</Link>
+            <Link to="/residents" className="nav-item nav-link">{translate("navbar.resident")}</Link>
             <Link to="/Fob" className="nav-item nav-link">{translate("navbar.fob")}</Link>
             <Link to="/Locker" className="nav-item nav-link">{translate("navbar.locker")}</Link>
             <Link to="/about" className="nav-item nav-link">{translate("navbar.about")}</Link>

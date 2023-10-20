@@ -6,7 +6,7 @@ import Home from './components/Home';
 import About from './components/About';
 import Error from './components/Error';
 import News from './components/News';
-import Resident from './components/Resident';
+import Residents from './components/Residents';
 
 function App() {
 
@@ -21,7 +21,7 @@ function App() {
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/about" component={About} />
-        <Route path="/resident" component={Resident} />
+        <Route path="/residents" component={Residents} />
         <Route component={Error} />
       </Switch>
       <News />

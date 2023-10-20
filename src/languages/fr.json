@@ -9,6 +9,25 @@
     "search": "Recherche",
     "go": "Aller"
   },
+  "residents": {
+    "filterBy": "Filtrer par",
+    "newResident": "Nouveau résident",
+    "personalInformation": "Personal Information",
+    "gender": "genre",
+    "firstName": "Prénom",
+    "lastName": "Nom de famille",
+    "phoneNo": "Numéro de téléphone",
+    "email": "E-mail",
+    "description": "Description",
+    "addResident": "Add Resident",
+    "message":{
+      "phoneTenDigit": "Phone number must be 10 digits.",
+      "emailInvalid": "Email is invalid"
+    },
+    "resident": "résidente",
+    "residents": "résidentes",
+    "actions": "Actions"
+  },
   "resident": {
     "title": "Nouveau résident",
     "personalInformation": "Informations personnelles",
@@ -28,6 +47,7 @@
     "message":{
       "phoneTenDigit": "Le numéro de téléphone doit comporter 10 chiffres.",
       "emailInvalid": "Le courriel est invalide"
-    }
+    },
+    "cancel": "Annuler"
   }
 }

@@ -6,7 +6,7 @@ import WithNewsLoading from "./WithNewsLoading";
 function News(){
 
   const fectDataInterval = 1800000; // 1800,000 milliseconds (1800 seconds = 30 mins)
-  const ratateNewsItemInterval = 10000; //2 seconds
+  const ratateNewsItemInterval = 5000; //5 seconds
 
   const [appState, setAppState] = useState({
     loading: false,
@@ -66,7 +66,7 @@ function News(){
     }
   }, [currentIndex, appState.newsList]);
 
-  console.log(currentItem);
+  //console.log(currentItem);
 
   return (
     <div>
