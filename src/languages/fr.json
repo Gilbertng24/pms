@@ -49,5 +49,13 @@
       "emailInvalid": "Le courriel est invalide"
     },
     "cancel": "Annuler"
+  },
+  "filterButton": {
+    "clear": "Tout effacer",
+    "firstName": "Prénom",
+    "lastName": "Nom de famille",
+    "phoneNo": "Numéro de téléphone",
+    "email": "E-mail",
+    "newResident": "Nouveau résident"
   }
 }

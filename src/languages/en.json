@@ -49,5 +49,13 @@
       "emailInvalid": "Email is invalid"
     },
     "cancel": "Cancel"
+  },
+  "filterButton": {
+    "clear": "Clear All",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phoneNo": "Phone Number",
+    "email": "Email",
+    "newResident": "New Resident"
   }
 }

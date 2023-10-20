@@ -25,6 +25,16 @@ function FilterButton({updateIsUpdating, updateFilter}){
     updateFilter("email", e.target.value);
   }
 
+  const clearFilter = () => {
+    setFirstName("");
+    setLastName("");
+    setPhoneNo("");
+    setEmail("");
+    updateFilter("firstName", firstName);
+    updateFilter("lastName", lastName);
+    updateFilter("phoneNo", phoneNo);
+    updateFilter("email", email);
+  }
 
   return (
     <>
@@ -45,7 +55,7 @@ function FilterButton({updateIsUpdating, updateFilter}){
               value={firstName}
               onChange={updateFirstName}
             />
-            <label htmlFor="firstName">{translate("residents.firstName")}</label>
+            <label htmlFor="firstName">{translate("filterButton.firstName")}</label>
           </div>
         </div>
 
@@ -59,7 +69,7 @@ function FilterButton({updateIsUpdating, updateFilter}){
               value={lastName}
               onChange={updateLastName}
             />
-            <label htmlFor="lastName">{translate("residents.lastName")}</label>
+            <label htmlFor="lastName">{translate("filterButton.lastName")}</label>
           </div>
         </div>
 
@@ -73,7 +83,7 @@ function FilterButton({updateIsUpdating, updateFilter}){
               value={phoneNo}
               onChange={updatePhoneNo}
             />
-            <label htmlFor="phoneNo">{translate("residents.phoneNo")}</label>
+            <label htmlFor="phoneNo">{translate("filterButton.phoneNo")}</label>
           </div>
         </div>
 
@@ -87,7 +97,19 @@ function FilterButton({updateIsUpdating, updateFilter}){
               value={email}
               onChange={updateEmail}
             />
-            <label htmlFor="email">{translate("residents.email")}</label>
+            <label htmlFor="email">{translate("filterButton.email")}</label>
+          </div>
+        </div>
+
+        <div className="col">
+          <div className="form-floating mb-3 mt-3">
+            <button 
+              type="button" 
+              className="btn btn-primary"
+              onClick={clearFilter}
+            >
+              {translate("filterButton.clear")}
+            </button>
           </div>
         </div>
 
@@ -98,7 +120,7 @@ function FilterButton({updateIsUpdating, updateFilter}){
               className="btn btn-primary"
               onClick={() => {updateIsUpdating(true)}}
             >
-              {translate("residents.newResident")}
+              {translate("filterButton.newResident")}
             </button>
           </div>
         </div>

@@ -13,6 +13,10 @@ function Residents(){
   const [activeRowId, setActiveRowId] = useState(0); // 0 means no active row, as the first row id started from 1.
   const [filteredResidents, setFilteredResident] = useState([]);
 
+//console.log(filteredResidents);
+
+
+
   useEffect(()=>{
     // const DATA_RESIDENTS = [
     //   {"id": 1, "firstName": "Gilbert", "lastName": "Ng", "gender": "Male", "telephone": "1234567890", "email": "abc@gil.com", "description": "d"},
@@ -44,8 +48,9 @@ function Residents(){
 
     const newId = residents.length + 1;
     const newResident = {id: newId, firstName, lastName, gender, phoneNo, email, description };
-    setActiveRowId(newId);
     setResidents([...residents, newResident ])
+    setFilteredResident([...residents, newResident ]);
+    setActiveRowId(newId);
 
     console.log("after....");
     console.log(residents);
@@ -84,6 +89,15 @@ function Residents(){
     setFilteredResident(filteredList);
   }
 
+  const deleteResident = (id) => {
+    console.log("deleteResident:" + id);
+    const updated = residents.filter((resident) => resident.id != id);
+
+    console.log(updated);
+    setResidents(updated);
+    setFilteredResident(updated);
+  }
+
   return (
     <div className="container col-md-10 mx-auto">
 
@@ -102,6 +116,7 @@ function Residents(){
             <ResidentList 
               residents={filteredResidents}
               activeRowId={activeRowId}
+              deleteResident={deleteResident}
             />
           </>
         )

@@ -1,15 +1,52 @@
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import { useLanguage } from "./LanguageProvider";
 
-function ResidentList({residents, activeRowId}){
+
+function ResidentList({residents, activeRowId, deleteResident}){
   const { translate } = useLanguage();
-  const [firstName,setFirstName] = useState("");
-  const [lastName,setLastName] = useState("");
-
+  const [residentId,setResidentId] = useState("");
   const noOfResidentHeading = residents.length <= 1 ? `${residents.length} ${translate("residents.resident")}` : `${residents.length} ${translate("residents.residents")}`;
+  const modalCancelButtonRef = useRef(null);
+
+  const residentEdit = (id) => {
+    deleteResident(id);
+    //console.log("edit.." + id);
+  }
+
+  const residentView = (id) => {
+    deleteResident(id);
+    //console.log("view.." + id);
+  }
+
+  const residentDelete = (id) => {
+    deleteResident(id);
+    console.log("......");
+    modalCancelButtonRef.current.click();
+    //console.log("delete.." + id);
 
 
-//console.log(residents);
+  }
+
+
+  const confirmModal = (
+    <div className="modal fade" id="deleteConfirmModal" tabIndex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title" id="deleteConfirmModalLabel">Delete Resident</h5>
+            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div className="modal-body">
+            Are you sure to delete the resident?
+          </div>
+          <div className="modal-footer">
+            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" ref={modalCancelButtonRef}>Close</button>
+            <button type="button" className="btn btn-primary" onClick={() => residentDelete(residentId)}>Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>    
+  )
 
   return (
     <>
@@ -17,6 +54,9 @@ function ResidentList({residents, activeRowId}){
 
       {/* List of residents */}
       <div className="table-responsive-lg mt-5 mb-5">
+
+        {confirmModal}
+
         <table className="table table-info table-hover table-striped table-bordered border-primary caption-top">
           <caption className="fw-bold">{noOfResidentHeading}</caption>
           <thead> 
@@ -24,7 +64,8 @@ function ResidentList({residents, activeRowId}){
               <th scope="col">#</th>
               <th scope="col">{translate("residents.firstName")}</th>
               <th scope="col">{translate("residents.lastName")}</th>
-              <th scope="col">{translate("residents.gender")}</th>
+              <th scope="col">{translate("residents.phoneNo")}</th>
+              <th scope="col">{translate("residents.email")}</th>
               <th scope="col" className="th-sm">{translate("residents.actions")}</th>
             </tr>
           </thead>
@@ -34,11 +75,18 @@ function ResidentList({residents, activeRowId}){
                   <th scope="row">{res.id}</th>
                   <td>{res.firstName}</td>
                   <td>{res.lastName}</td>
-                  <td>{res.gender}</td>
+                  <td>{res.phoneNo}</td>
+                  <td>{res.email}</td>
                   <td>
-                    <button type="button" className="btn btn-light me-2"><i className="bi bi-wrench text-primary"></i></button>
-                    <button type="button" className="btn btn-light me-2"><i className="bi bi-ticket-detailed-fill text-success"></i></button>
-                    <button type="button" className="btn btn-light me-2"><i className="bi bi-trash-fill text-danger"></i></button>
+                    <button type="button" className="btn btn-light me-2" key={`${res.id}-edit`} onClick={() => residentEdit(res.id)}>
+                      <i className="bi bi-wrench text-primary"></i>
+                    </button>
+                    <button type="button" className="btn btn-light me-2" key={`${res.id}-view`} onClick={() => residentView(res.id)}>
+                      <i className="bi bi-ticket-detailed-fill text-success"></i>
+                    </button>
+                    <button type="button" className="btn btn-light me-2" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal" key={`${res.id}-delete`} onClick={() => setResidentId(res.id)}>
+                      <i className="bi bi-trash-fill text-danger"></i>
+                    </button>
                   </td>    
                 </tr> 
             ))}
