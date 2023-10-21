@@ -29,7 +29,9 @@
     "actions": "Actions"
   },
   "resident": {
-    "title": "Nouveau résident",
+    "titleNew": "Nouveau résident",
+    "titleEdit": "Modifier le résident",
+    "titleView": "Voir le résident",
     "personalInformation": "Informations personnelles",
     "gender": {
       "gender": "genre",
@@ -44,6 +46,7 @@
     "email": "E-mail",
     "description": "Description",
     "addResident": "Ajouter un résident",
+    "editResident": "Modifier le résident",
     "message":{
       "phoneTenDigit": "Le numéro de téléphone doit comporter 10 chiffres.",
       "emailInvalid": "Le courriel est invalide"
@@ -51,7 +54,7 @@
     "cancel": "Annuler"
   },
   "filterButton": {
-    "clear": "Tout effacer",
+    "clear": "Effacer le filtre",
     "firstName": "Prénom",
     "lastName": "Nom de famille",
     "phoneNo": "Numéro de téléphone",

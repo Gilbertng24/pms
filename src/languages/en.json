@@ -29,7 +29,9 @@
     "actions": "Actions"
   },
   "resident": {
-    "title": "New Resident",
+    "titleNew": "New Resident",
+    "titleEdit": "Edit Resident",
+    "titleView": "View Resident",
     "personalInformation": "Personal Information",
     "gender": {
       "gender": "gender",
@@ -44,6 +46,7 @@
     "email": "Email",
     "description": "Description",
     "addResident": "Add Resident",
+    "editResident": "Edit Resident",
     "message":{
       "phoneTenDigit": "Phone number must be 10 digits.",
       "emailInvalid": "Email is invalid"
@@ -51,7 +54,7 @@
     "cancel": "Cancel"
   },
   "filterButton": {
-    "clear": "Clear All",
+    "clear": "Clear Filter",
     "firstName": "First Name",
     "lastName": "Last Name",
     "phoneNo": "Phone Number",

@@ -2,17 +2,22 @@ import React, {useState} from "react";
 import { useLanguage } from "./LanguageProvider";
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
+import { useEffect } from "react";
 
-function Resident({updateIsUpdating, updateNewResident, mode, activeRowId, editResident, viewResident, resident}){
+function Resident({updateIsUpdating, updateNewResident, mode, activeRowId, editResident, viewResident, resident, updateResident}){
 
 console.log(".....");
 console.log(mode);
 console.log(activeRowId);
 console.log(resident);
+console.log(Object.keys(resident));
 
+  const [readOnly, setReadOnly] = useState(true);  
+  const [id,setId] = useState(0);
   const [firstName,setFirstName] = useState("");
   const [lastName,setLastName] = useState("");
   const { translate } = useLanguage();
+  const [title, setTitle] = useState("");
 
   const genderOptions = [
     {value: '', text: `${translate("resident.gender.options")}`},
@@ -29,9 +34,12 @@ console.log(resident);
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    console.log(firstName + "... " + lastName);
-    updateNewResident(firstName, lastName, gender, phoneNo, email, description);
-    updateIsUpdating(false);
+    //console.log(firstName + "... " + lastName);      
+    updateIsUpdating(false);  
+    mode === "new" ? 
+      updateNewResident(firstName, lastName, gender, phoneNo, email, description)
+    :
+      updateResident(id, firstName, lastName, gender, phoneNo, email, description)
   }
 
   //phone number
@@ -56,11 +64,48 @@ console.log(resident);
   //description
   const [description,setDescription] = useState("");
 
+  const setDefault = () => {
+    if (Object.keys(resident).length !== 0){   
+      //console.log("ooooooo"); 
+      setFirstName(resident.firstName);
+      setLastName(resident.lastName);
+      setGender(resident.gender);
+      setPhoneNo(resident.phoneNo);
+      setEmail(resident.email);
+      setDescription(resident.description);
+    }
+  }
+
+  //initial the value from existing resident
+  useEffect(() => {
+    if (mode === "new"){
+      setReadOnly(false);
+      setTitle(translate("resident.titleNew"));
+    }
+    else if (mode === "view"){
+      setTitle(translate("resident.titleView"));
+      setReadOnly(true);
+      setDefault();
+    }
+    else if (mode === "edit"){
+      setId(resident.id);
+      setTitle(translate("resident.titleEdit"));
+      setReadOnly(false);
+      setDefault();
+    }
+    else {
+      setReadOnly(true);
+    }
+
+  },[]);
+
+
+
   return (
     <div className="container">
       <form onSubmit={handleSubmit}>
         <div className="mt-5 mb-5">
-          <h1>{translate("resident.title")}</h1>
+          <h1>{title}</h1>
         </div>      
 
         <fieldset className="col-md-8 mx-auto">
@@ -76,6 +121,7 @@ console.log(resident);
                   placeholder="First Name"
                   value={firstName}
                   onChange={(e)=>{setFirstName(e.target.value)}}
+                  readOnly={readOnly}
                 />
                 <label htmlFor="firstName">{translate("resident.firstName")}<span style={{color: "red"}}>*</span></label>
               </div>
@@ -90,6 +136,7 @@ console.log(resident);
                   placeholder="Last Name"
                   value={lastName}
                   onChange={(e)=>{setLastName(e.target.value)}}
+                  readOnly={readOnly}
                 />
                 <label htmlFor="lastName">{translate("resident.lastName")}<span style={{color: "red"}}>*</span></label>
               </div>
@@ -99,7 +146,7 @@ console.log(resident);
           <div className="row">
             <div className="col">
               <div className="form-floating mb-3">
-                <select value={gender} onChange={genderChange} className="form-select" id="gender" aria-label="gender options">
+                <select value={gender} onChange={genderChange} className="form-select" id="gender" aria-label="gender options" disabled={readOnly}>
                   {/* <option selected>Choose...</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -128,6 +175,7 @@ console.log(resident);
                   value={phoneNo}
                   onChange={phoneNoChange}
                   defaultCountry={defaultCountry}
+                  readOnly={readOnly}
                 />
                 <label htmlFor="phoneNo">{translate("resident.phoneNo")}<span style={{color: "red"}}>*</span></label>
               </div>
@@ -148,6 +196,7 @@ console.log(resident);
                   value={email}
                   onChange={(e)=>{setEmail(e.target.value)}}
                   onBlur={validateEmail}
+                  readOnly={readOnly}
                 />
                 <label htmlFor="email">{translate("resident.email")}<span style={{color: "red"}}>*</span></label>
               </div>
@@ -167,6 +216,7 @@ console.log(resident);
                   placeholder="description"
                   value={description}
                   onChange={(e)=>{setDescription(e.target.value)}}
+                  readOnly={readOnly}
                 />
                 <label htmlFor="description">{translate("resident.description")}</label>
               </div>
@@ -175,13 +225,22 @@ console.log(resident);
 
         </fieldset>
 
-        <button 
-          type="submit" 
-          className="btn btn-primary me-3"
 
-        >
-          {translate("resident.addResident")}
-        </button>
+        {mode === "view" ? "" : mode === "new" ? 
+          <button 
+            type="submit" 
+            className="btn btn-primary me-3"
+          >
+            {translate("resident.addResident")}
+          </button>
+          :
+          <button 
+            type="submit" 
+            className="btn btn-primary me-3"
+          >
+            {translate("resident.editResident")}
+          </button>
+        }
 
         <button 
           type="button" 
@@ -190,7 +249,6 @@ console.log(resident);
         >
           {translate("resident.cancel")}
         </button>
-
 
       </form>
     </div>

@@ -44,9 +44,9 @@ function Residents(){
   }
 
   const updateNewResident = (firstName, lastName, gender, phoneNo, email, description) =>{
-  console.log("first name = " + firstName);
-  console.log("beginning....");
-  console.log(residents);
+  // console.log("first name = " + firstName);
+  // console.log("beginning....");
+  // console.log(residents);
 
     const newId = residents.length + 1;
     const newResident = {id: newId, firstName, lastName, gender, phoneNo, email, description };
@@ -54,9 +54,21 @@ function Residents(){
     setFilteredResident([...residents, newResident ]);
     setActiveRowId(newId);
 
-    console.log("after....");
-    console.log(residents);
+    // console.log("after....");
+    // console.log(residents);
   
+  }
+
+  const updateResident = (id, firstName, lastName, gender, phoneNo, email, description) =>{
+    const updateList = residents.map((resident) =>{
+      if (resident.id === id){
+        return {id, firstName , lastName, gender, phoneNo, email, description}
+      }
+      return resident;
+    })
+    setResidents(updateList);
+    setActiveRowId(id);
+    setFilteredResident(updateList);
   }
 
   const updateFilter = (key, value) => {
@@ -135,6 +147,7 @@ function Residents(){
           editResident={editResident}
           viewResident={viewResident}
           resident={resident}
+          updateResident={updateResident}
         />)
         :(
           <>
