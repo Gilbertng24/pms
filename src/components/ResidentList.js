@@ -2,29 +2,26 @@ import React, {useState, useRef} from "react";
 import { useLanguage } from "./LanguageProvider";
 
 
-function ResidentList({residents, activeRowId, deleteResident}){
+function ResidentList({residents, activeRowId, editResident, viewResident, deleteResident}){
   const { translate } = useLanguage();
   const [residentId,setResidentId] = useState("");
   const noOfResidentHeading = residents.length <= 1 ? `${residents.length} ${translate("residents.resident")}` : `${residents.length} ${translate("residents.residents")}`;
   const modalCancelButtonRef = useRef(null);
 
-  const residentEdit = (id) => {
-    deleteResident(id);
+  const residentEdit = (resident) => {
+    editResident(resident);
     //console.log("edit.." + id);
   }
 
-  const residentView = (id) => {
-    deleteResident(id);
+  const residentView = (resident) => {
+    viewResident(resident);
     //console.log("view.." + id);
   }
 
   const residentDelete = (id) => {
     deleteResident(id);
-    console.log("......");
+    //close the modal dialog
     modalCancelButtonRef.current.click();
-    //console.log("delete.." + id);
-
-
   }
 
 
@@ -33,15 +30,15 @@ function ResidentList({residents, activeRowId, deleteResident}){
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="deleteConfirmModalLabel">Delete Resident</h5>
+            <h5 className="modal-title" id="deleteConfirmModalLabel">{translate("residentList.confirmDelete")}</h5>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body">
-            Are you sure to delete the resident?
+          {translate("residentList.deleteMessage")}
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" ref={modalCancelButtonRef}>Close</button>
-            <button type="button" className="btn btn-primary" onClick={() => residentDelete(residentId)}>Save changes</button>
+            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" ref={modalCancelButtonRef}>{translate("residentList.cancel")}</button>
+            <button type="button" className="btn btn-primary" onClick={() => residentDelete(residentId)}>{translate("residentList.confirm")}</button>
           </div>
         </div>
       </div>
@@ -78,10 +75,10 @@ function ResidentList({residents, activeRowId, deleteResident}){
                   <td>{res.phoneNo}</td>
                   <td>{res.email}</td>
                   <td>
-                    <button type="button" className="btn btn-light me-2" key={`${res.id}-edit`} onClick={() => residentEdit(res.id)}>
+                    <button type="button" className="btn btn-light me-2" key={`${res.id}-edit`} onClick={() => residentEdit(res)}>
                       <i className="bi bi-wrench text-primary"></i>
                     </button>
-                    <button type="button" className="btn btn-light me-2" key={`${res.id}-view`} onClick={() => residentView(res.id)}>
+                    <button type="button" className="btn btn-light me-2" key={`${res.id}-view`} onClick={() => residentView(res)}>
                       <i className="bi bi-ticket-detailed-fill text-success"></i>
                     </button>
                     <button type="button" className="btn btn-light me-2" data-bs-toggle="modal" data-bs-target="#deleteConfirmModal" key={`${res.id}-delete`} onClick={() => setResidentId(res.id)}>

@@ -10,8 +10,10 @@ function Residents(){
   // const [lastName,setLastName] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
   const [residents, setResidents] = useState([]);
+  const [mode, setMode] = useState("view"); // initial to view mode.
   const [activeRowId, setActiveRowId] = useState(0); // 0 means no active row, as the first row id started from 1.
   const [filteredResidents, setFilteredResident] = useState([]);
+  const [resident, setResident] = useState({}); //initial empty object
 
 //console.log(filteredResidents);
 
@@ -98,6 +100,29 @@ function Residents(){
     setFilteredResident(updated);
   }
 
+  const editResident = (resident) => {
+//console.log("edit mode: " + id);
+    setIsUpdating(true);
+    setMode("edit");
+    setResident(resident);
+    setActiveRowId(resident.id);
+  }
+
+  const viewResident = (resident) => {
+    setIsUpdating(true);
+    setMode("view");
+    setResident(resident);
+    setActiveRowId(resident.id);
+  }
+
+  const setResidentMode = (mode) =>{
+    setMode(mode);
+  }
+
+  const setResidentActiveRowId = (id) =>{
+    setActiveRowId(id);
+  }
+
   return (
     <div className="container col-md-10 mx-auto">
 
@@ -105,17 +130,25 @@ function Residents(){
         <Resident 
           updateIsUpdating={updateIsUpdating}  
           updateNewResident={updateNewResident}
-
+          mode={mode}
+          activeRowId={activeRowId}
+          editResident={editResident}
+          viewResident={viewResident}
+          resident={resident}
         />)
         :(
           <>
             <FilterButton 
               updateIsUpdating={updateIsUpdating}  
               updateFilter={updateFilter}
+              setResidentMode={setResidentMode}
+              setResidentActiveRowId={setResidentActiveRowId}
             />
             <ResidentList 
               residents={filteredResidents}
               activeRowId={activeRowId}
+              editResident={editResident}
+              viewResident={viewResident}
               deleteResident={deleteResident}
             />
           </>

@@ -3,7 +3,12 @@ import { useLanguage } from "./LanguageProvider";
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 
-function Resident({updateIsUpdating, updateNewResident}){
+function Resident({updateIsUpdating, updateNewResident, mode, activeRowId, editResident, viewResident, resident}){
+
+console.log(".....");
+console.log(mode);
+console.log(activeRowId);
+console.log(resident);
 
   const [firstName,setFirstName] = useState("");
   const [lastName,setLastName] = useState("");

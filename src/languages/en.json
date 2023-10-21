@@ -57,5 +57,16 @@
     "phoneNo": "Phone Number",
     "email": "Email",
     "newResident": "New Resident"
+  },
+  "residentList": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phoneNo": "Phone Number",
+    "email": "Email",
+    "actions": "Actions",
+    "confirmDelete": "Confirm delete resident",
+    "deleteMessage": "Are you sure to delete this resident?",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
   }
 }

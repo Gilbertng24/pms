@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { useLanguage } from "./LanguageProvider";
 
-function FilterButton({updateIsUpdating, updateFilter}){
+function FilterButton({updateIsUpdating, updateFilter, setResidentMode, setResidentActiveRowId}){
   const { translate } = useLanguage();
   const [firstName,setFirstName] = useState("");
   const [lastName,setLastName] = useState("");
@@ -34,6 +34,12 @@ function FilterButton({updateIsUpdating, updateFilter}){
     updateFilter("lastName", lastName);
     updateFilter("phoneNo", phoneNo);
     updateFilter("email", email);
+  }
+
+  const newResident = () =>{
+    updateIsUpdating(true);
+    setResidentMode("new");
+    setResidentActiveRowId(0);
   }
 
   return (
@@ -118,7 +124,7 @@ function FilterButton({updateIsUpdating, updateFilter}){
             <button 
               type="button" 
               className="btn btn-primary"
-              onClick={() => {updateIsUpdating(true)}}
+              onClick={() => {newResident()}}
             >
               {translate("filterButton.newResident")}
             </button>
