@@ -71,5 +71,9 @@
     "deleteMessage": "Êtes-vous sûr de supprimer ce résident ?",
     "cancel": "Annuler",
     "confirm": "Confirmer"
+  },
+  "adviceItem": {
+    "advice": "Conseils d'aujourd'hui",
+    "forYou": "Pour toi"
   }
 }

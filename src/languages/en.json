@@ -71,5 +71,9 @@
     "deleteMessage": "Are you sure to delete this resident?",
     "cancel": "Cancel",
     "confirm": "Confirm"
+  },
+  "adviceItem": {
+    "advice": "Advice of today",
+    "forYou": "For you"
   }
 }

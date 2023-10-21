@@ -1,115 +1,120 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
-import WithListLoading from "./WithListLoading";
-import List from "./List";
+import AdviceItem from "./AdviceItem";
+import ActiveBus from "./ActiveBus";
+import WithLoading from "./WithLoading";
 
 function Home(){
-  const [appState, setAppState] = useState({
+
+  const fectDataInterval = 1800000; // 1800,000 milliseconds (1800 seconds = 30 mins)
+  const ratateNewsItemInterval = 5000; //5 seconds
+  const translinkApiKey = 'bR8iPRq64PPyp5iIYoSd';
+  const translinkStopNo = 52030; //E 49 Ave @Main St
+
+  const [adviceState, setAdviceState] = useState({
     loading: false,
-    news: null,
+    data: null,
   });
 
-  const ListLoading = WithListLoading(List);
+  const [appState, setAppState] = useState({
+    loading: false,
+    data: null,
+  });
+
+ const Advice = WithLoading(AdviceItem);
+ const adviceAPI = 'https://api.adviceslip.com/advice';
+
+  useEffect(() => {
+    async function fetchAdvice() {
+      setAdviceState({ loading: true });
+      const res = await axios.get(adviceAPI);
+      console.log(res);
+      if (res.data != null){
+        const advice = res.data.slip.advice;
+        setAdviceState({ loading: false, data: advice});  
+      }
+    }
+    fetchAdvice();
+    // Set up a timer to fetch data every 30 minutes
+    const adviceIntervalId = setInterval(() => {
+      fetchAdvice();
+    }, fectDataInterval); 
+
+    // Clean up the interval when the component unmounts
+    return () => {
+      clearInterval(adviceIntervalId);
+    };    
+  }, [])
+
+
+  const ActiveBusRoute = WithLoading(ActiveBus);
+  //const translinkAPI = 'https://api.translink.ca/rttiapi/v1/routes/49?apikey=bR8iPRq64PPyp5iIYoSd';
+  //const translinkAPI = 'https://api.translink.ca/rttiapi/v1/stops/60980/estimates?apikey=bR8iPRq64PPyp5iIYoSd&count=3&timeframe=120&routeNo=050';
+  //const translinkAPI = 'https://api.translink.ca/rttiapi/v1/buses?apikey=bR8iPRq64PPyp5iIYoSd&routeNo=099';
+  //https://api.translink.ca/rttiapi/v1/buses?apikey=bR8iPRq64PPyp5iIYoSd&stopNo=52030
+  const translinkAPI = `https://api.translink.ca/rttiapi/v1/buses?apikey=${translinkApiKey}&stopNo=${translinkStopNo}`; 
+  
+
+  useEffect(() => {   
+    async function fetchData() {
+      console.log("......");
+      console.log(translinkAPI);
+      setAppState({ loading: true });
+      const res = await axios.get(translinkAPI);
+      console.log(res);
+      if (res.data != null){
+        const list = res.data.map((route, index) => {return {id: index, destination : route.Destination, routeNo: route.RouteNo, vehicleNo: route.VehicleNo}});
+        setAppState({ loading: false, data: list});  
+      }
+    }
+    fetchData();
+    // Set up a timer to fetch data every 30 minutes
+    const intervalId = setInterval(() => {
+      fetchData();
+    }, fectDataInterval); 
+
+    // Clean up the interval when the component unmounts
+    return () => {
+      clearInterval(intervalId);
+    };    
+  },[])
+
+
+  
+  // //Loop through the newsList items and repeakly display one by one.
+  // const [currentIndex, setCurrentIndex] = useState(0);
+  // const initialNews = (appState.newsList == null) ? null : appState.newsList[currentIndex];
+  // const [currentItem, setCurrentItem] = useState(initialNews);
 
   // useEffect(() => {
-  //   async function fetchData() {
-  //     setAppState({ loading: true });
-  //     const apiUrl = 'https://newsapi.org/v2/top-headlines?country=ca&apiKey=c54af98eb3d54b599abd450a6d9ce599';
-  //     //const apiUrl = 'https://jsonplaceholder.typicode.com/todos';
-  //     const res = await axios.get(apiUrl);
-  //     //console.log(res.data.articles.slice(0,4))
-  //     //console.log(res)
-  //     setAppState({ loading: false, news: res.data.articles.slice(0,4) })
+  //   if (appState.newsList != null){
+  //     // Define a function to display the next item
+  //   const displayNextItem = () => {
+  //     if (currentIndex < appState.newsList.length - 1) {
+  //       setCurrentIndex(currentIndex + 1);
+  //       setCurrentItem(appState.newsList[currentIndex + 1]);
+  //     }
+  //     //re-initial index to 0 for repeating
+  //     else if (currentIndex == appState.newsList.length - 1) {  
+  //       setCurrentIndex(0);
+  //       setCurrentItem(appState.newsList[currentIndex]);
+  //     }
+  //   };
+
+  //     // Use setTimeout to display items at a n-second interval
+  //     const intervalId = setInterval(displayNextItem, ratateNewsItemInterval);
+
+  //     // Clean up the interval when the component unmounts
+  //     return () => clearInterval(intervalId);
   //   }
-  //   fetchData();
-  // }, [])
+  // }, [currentIndex, appState.newsList]);
+
+  // //console.log(currentItem);
 
   return (
     <div className="container">
-      {/* <ListLoading isLoading={appState.loading} news={appState.news} /> */}
-
-      <div className="row">
-        <div className="col">
-          <h1 className="container mt-4">Cards</h1>
-          <div className="card" style={{width: "400px"}}>
-            <div className="card-header">
-              Custom Printed Mug
-            </div>
-            <img className="card-img" src="https://pixelprowess.com/i/mug-rex.jpg" alt="Oscar" />
-            <div className="card-body">
-              <h5 className="card-title">Rex</h5>
-              <h5 className="card-subtitle">Mayor of Binaryville</h5>
-              <p className="card-text lh-sm">A well-loved personality in town. He rose to robotdom from a microprocessor plant on the south side of town, where many famous and influential robots before him were conceived.</p>
-              <a href="#" className="card-link">more info</a>
-            </div>
-            <div className="card-footer">
-              Now on sale
-            </div> 
-          </div>
-        </div>
-
-        <div className="col">
-          <h1 className="container mt-4">Cards</h1>
-          <div className="card" style={{width: "400px"}}>
-            <div className="card-header">
-              Custom Printed Mug
-            </div>
-            <img className="card-img" src="https://pixelprowess.com/i/mug-rex.jpg" alt="Oscar" />
-            <div className="card-body">
-              <h5 className="card-title">Rex</h5>
-              <h5 className="card-subtitle">Mayor of Binaryville</h5>
-              <p className="card-text lh-sm">A well-loved personality in town. He rose to robotdom from a microprocessor plant on the south side of town, where many famous and influential robots before him were conceived.</p>
-              <a href="#" className="card-link">more info</a>
-            </div>
-            <div className="card-footer">
-              Now on sale
-            </div> 
-          </div>
-        </div>
-
-      </div>
-
-      <div className="row">
-        <div className="col">
-          <h1 className="container mt-4">Cards</h1>
-          <div className="card" style={{width: "400px"}}>
-            <div className="card-header">
-              Custom Printed Mug
-            </div>
-            <img className="card-img" src="https://pixelprowess.com/i/mug-rex.jpg" alt="Oscar" />
-            <div className="card-body">
-              <h5 className="card-title">Rex</h5>
-              <h5 className="card-subtitle">Mayor of Binaryville</h5>
-              <p className="card-text lh-sm">A well-loved personality in town. He rose to robotdom from a microprocessor plant on the south side of town, where many famous and influential robots before him were conceived.</p>
-              <a href="#" className="card-link">more info</a>
-            </div>
-            <div className="card-footer">
-              Now on sale
-            </div> 
-          </div>
-        </div>
-
-        <div className="col">
-          <h1 className="container mt-4">Cards</h1>
-          <div className="card" style={{width: "400px"}}>
-            <div className="card-header">
-              Custom Printed Mug
-            </div>
-            <img className="card-img" src="https://pixelprowess.com/i/mug-rex.jpg" alt="Oscar" />
-            <div className="card-body">
-              <h5 className="card-title">Rex</h5>
-              <h5 className="card-subtitle">Mayor of Binaryville</h5>
-              <p className="card-text lh-sm">A well-loved personality in town. He rose to robotdom from a microprocessor plant on the south side of town, where many famous and influential robots before him were conceived.</p>
-              <a href="#" className="card-link">more info</a>
-            </div>
-            <div className="card-footer">
-              Now on sale
-            </div> 
-          </div>
-        </div>
-
-      </div>
-
+      <Advice isLoading={adviceState.loading} data={adviceState.data} />
+      <ActiveBusRoute isLoading={appState.loading} data={appState.data} stopNo={translinkStopNo}/>
     </div>
   )
 }

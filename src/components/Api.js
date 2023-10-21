@@ -1,19 +1,19 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
 import NewsItem from "./NewsItem";
-import WithNewsLoading from "./WithNewsLoading";
+import WithLoading from "./WithLoading";
 
-function News(){
+function Api(){
 
   const fectDataInterval = 1800000; // 1800,000 milliseconds (1800 seconds = 30 mins)
   const ratateNewsItemInterval = 5000; //5 seconds
 
   const [appState, setAppState] = useState({
     loading: false,
-    newsList: null,
+    data: null,
   });
 
-  const NewsLoading = WithNewsLoading(NewsItem);
+  const NewsLoading = WithLoading(NewsItem);
   const newsAPI = 'https://newsapi.org/v2/top-headlines?country=ca&apiKey=c54af98eb3d54b599abd450a6d9ce599';
   
   useEffect(() => {
@@ -75,4 +75,4 @@ function News(){
   )
 }
 
-export default News;
+export default Api;

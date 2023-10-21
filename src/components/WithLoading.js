@@ -1,6 +1,6 @@
 import React from 'react';
 
-function WithNewsLoading(Component) {
+function WithLoading(Component) {
   return function TmpFunc({ isLoading, ...props }) {
     if (!isLoading) return <Component {...props} />;
     return (
@@ -10,4 +10,4 @@ function WithNewsLoading(Component) {
     );
   };
 }
-export default WithNewsLoading;
+export default WithLoading;
