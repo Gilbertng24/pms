@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from 'react-router-dom';
 import Home from "./Home";
 import About from "./About";
@@ -7,11 +7,16 @@ import { useLanguage } from './LanguageProvider';
 function Navbar(){
   const { language, changeLanguage } = useLanguage();
   const { translate } = useLanguage();
+  const [ searchValue, setSearchValue] = useState("");
 
-  useEffect(() => {
-    // This function will run when the component is first loaded
-    console.log('Navbar.....Page has been refreshed or loaded for the first time');
-  }, []);
+  // useEffect(() => {
+  //   // This function will run when the component is first loaded
+  //   console.log('Navbar.....Page has been refreshed or loaded for the first time');
+  // }, []);
+
+  const searchResident = () => {
+    <Link to="/residents"></Link>
+  }
 
   return (
     <nav className="navbar navbar-expand-xl bg-primary navbar-dark">
@@ -28,9 +33,18 @@ function Navbar(){
         <div className="collapse navbar-collapse" id="navbar_pms_toggler">
           <div className="navbar-nav navbar-nav-scroll ms-auto">
             <Link to="/" className="nav-item nav-link active" aria-current="page">{translate("navbar.home")}</Link>
-            <Link to="/residents" className="nav-item nav-link">{translate("navbar.resident")}</Link>
-            <Link to="/Fob" className="nav-item nav-link">{translate("navbar.fob")}</Link>
-            <Link to="/Locker" className="nav-item nav-link">{translate("navbar.locker")}</Link>
+            <Link to={{
+                pathname: '/residents',
+                state: {
+                  prop: {searchValue}
+                },
+              }} 
+              className="nav-item nav-link"
+            >
+              {translate("navbar.resident")}
+            </Link>
+            {/* <Link to="/Fob" className="nav-item nav-link">{translate("navbar.fob")}</Link>
+            <Link to="/Locker" className="nav-item nav-link">{translate("navbar.locker")}</Link> */}
             <Link to="/about" className="nav-item nav-link">{translate("navbar.about")}</Link>
 
             {/* button for toggling between English and French */}
@@ -39,9 +53,25 @@ function Navbar(){
             </button>
 
           </div>
-          <form className="d-flex ms-3">
-            <input className="form-control me-2" type="search" placeholder={translate("navbar.search")} aria-label="Search" />
-            <button className="btn btn-outline-light" type="submit">{translate("navbar.go")}</button>   
+          <form className="d-flex ms-3" onSubmit={searchResident}>
+            <input 
+              className="form-control me-2" 
+              type="search" 
+              placeholder={translate("navbar.search")} 
+              aria-label="Search" 
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <Link to={{
+                pathname: '/residents',
+                state: {
+                  prop: {searchValue}
+                },
+              }}
+            className="nav-item nav-link" >
+            <button 
+              className="btn btn-outline-light" type="submit">{translate("navbar.go")}</button>   
+              </Link>
           </form>
         </div>
       </div>

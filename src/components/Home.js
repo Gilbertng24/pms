@@ -2,6 +2,7 @@ import React, { useState, useEffect} from "react";
 import axios from "axios";
 import AdviceItem from "./AdviceItem";
 import ActiveBus from "./ActiveBus";
+import Covid19Item from "./Covid19Item";
 import WithLoading from "./WithLoading";
 
 function Home(){
@@ -16,13 +17,25 @@ function Home(){
     data: null,
   });
 
-  const [appState, setAppState] = useState({
+  const [busState, setBusState] = useState({
     loading: false,
     data: null,
   });
 
- const Advice = WithLoading(AdviceItem);
- const adviceAPI = 'https://api.adviceslip.com/advice';
+  const [covid19State, setCovid19State] = useState({
+    loading: false,
+    data: null,
+  });
+
+  
+  const [weatherState, setWeatherState] = useState({
+    loading: false,
+    data: null,
+  });
+
+
+  const Advice = WithLoading(AdviceItem);
+  const adviceAPI = 'https://api.adviceslip.com/advice';
 
   useEffect(() => {
     async function fetchAdvice() {
@@ -59,12 +72,18 @@ function Home(){
     async function fetchData() {
       console.log("......");
       console.log(translinkAPI);
-      setAppState({ loading: true });
-      const res = await axios.get(translinkAPI);
-      console.log(res);
-      if (res.data != null){
-        const list = res.data.map((route, index) => {return {id: index, destination : route.Destination, routeNo: route.RouteNo, vehicleNo: route.VehicleNo}});
-        setAppState({ loading: false, data: list});  
+      setBusState({ loading: true });
+      try{
+        const res = await axios.get(translinkAPI);
+        console.log(res);
+        if (res.data != null){
+          const list = res.data.map((route, index) => {return {id: index, destination : route.Destination, routeNo: route.RouteNo, vehicleNo: route.VehicleNo}});
+          setBusState({ loading: false, data: list});  
+        }  
+      }
+      catch (error){
+        const list = "error";
+        setBusState({ loading: false, data: list});  
       }
     }
     fetchData();
@@ -78,6 +97,41 @@ function Home(){
       clearInterval(intervalId);
     };    
   },[])
+
+  const Covid19 = WithLoading(Covid19Item);
+  //const translinkAPI = 'https://api.translink.ca/rttiapi/v1/routes/49?apikey=bR8iPRq64PPyp5iIYoSd';
+  //const translinkAPI = 'https://api.translink.ca/rttiapi/v1/stops/60980/estimates?apikey=bR8iPRq64PPyp5iIYoSd&count=3&timeframe=120&routeNo=050';
+  //const translinkAPI = 'https://api.translink.ca/rttiapi/v1/buses?apikey=bR8iPRq64PPyp5iIYoSd&routeNo=099';
+  //https://api.translink.ca/rttiapi/v1/buses?apikey=bR8iPRq64PPyp5iIYoSd&stopNo=52030
+  const covid19API = `https://api.covid19tracker.ca/summary`; 
+  
+
+  // useEffect(() => {   
+  //   async function fetchData() {
+  //     console.log("......");
+  //     console.log(covid19API);
+  //     setBusState({ loading: true });
+  //     const res = await axios.get(covid19API, {
+  //       crossDomain: true, // For cross-origin requests
+  //     });
+  //     console.log(res);
+  //     if (res.data != null){
+  //       const list = res.data.map((route, index) => {return {id: index, destination : route.Destination, routeNo: route.RouteNo, vehicleNo: route.VehicleNo}});
+  //       setCovid19State({ loading: false, data: list});  
+  //     }
+  //   }
+  //   fetchData();
+  //   // Set up a timer to fetch data every 30 minutes
+  //   const intervalId = setInterval(() => {
+  //     fetchData();
+  //   }, fectDataInterval); 
+
+  //   // Clean up the interval when the component unmounts
+  //   return () => {
+  //     clearInterval(intervalId);
+  //   };    
+  // },[])
+ 
 
 
   
@@ -113,8 +167,10 @@ function Home(){
 
   return (
     <div className="container">
-      <Advice isLoading={adviceState.loading} data={adviceState.data} />
-      <ActiveBusRoute isLoading={appState.loading} data={appState.data} stopNo={translinkStopNo}/>
+      <div className="row">
+        <Advice isLoading={adviceState.loading} data={adviceState.data} />
+        <ActiveBusRoute isLoading={busState.loading} data={busState.data} stopNo={translinkStopNo}/>
+      </div>
     </div>
   )
 }

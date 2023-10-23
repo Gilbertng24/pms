@@ -6,7 +6,7 @@
     "locker": "Locker",
     "fob": "Fob",
     "about": "about",
-    "search": "Search",
+    "search": "Resident Search",
     "go": "Go"
   },
   "residents": {
@@ -75,5 +75,11 @@
   "adviceItem": {
     "advice": "Advice of today",
     "forYou": "For you"
+  },
+  "activeBus": {
+    "activeBus": "Active Bus",
+    "destination": "Destination",
+    "routeNo": "Route No",
+    "vehicleNo": "Vehicle No"
   }
 }

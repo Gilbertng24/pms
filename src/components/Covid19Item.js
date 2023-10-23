@@ -3,7 +3,7 @@ import { useLanguage } from "./LanguageProvider";
 // import { nanoid } from "nanoid";
 // import { format } from 'date-fns-tz';
 
-function ActiveBus(props){
+function Covid19Item(props){
   const { translate } = useLanguage();
   // const dateTimeFormat = 'MMMM dd, yyyy HH:mm:ss';
   // const vancouverTimeZone = 'America/Vancouver';
@@ -13,7 +13,7 @@ console.log(props);
   //id, destination, routeNo, vehicleNo
 //console.log(props);  
   return (    
-    // <div className="row">
+    <div className="row">
       <div className="col">
         {/* <h1 className="container mt-4">{`Stop No: ${props.stopNo}`}</h1> */}
         <div className="card" style={{width: "400px"}}>
@@ -25,7 +25,7 @@ console.log(props);
             <h5 className="card-title">{translate("activeBus.activeBus")}</h5>
             {/* <h5 className="card-subtitle">Mayor of Binaryville</h5> */}
             {
-              props.data == null ? "" : props.data === "error" ? <p>Try again later</p> :
+              props.data == null ? "" : 
                 props.data.map((route) => {
                   return (
                     <p className="card-text lh-sm" key={route.id}>
@@ -42,8 +42,8 @@ console.log(props);
           </div>  */}
         </div>
       </div>
-    // </div>
+    </div>
   );
 }
 
-export default ActiveBus;
+export default Covid19Item;

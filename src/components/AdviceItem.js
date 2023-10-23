@@ -13,7 +13,7 @@ console.log(props);
   //id, destination, routeNo, vehicleNo
 //console.log(props);  
   return (    
-    <div className="row">
+    // <div className="row">
       <div className="col">
         {/* <h1 className="container mt-4">{`Stop No: ${props.stopNo}`}</h1> */}
         <div className="card" style={{width: "400px"}}>
@@ -38,7 +38,7 @@ console.log(props);
           </div>  */}
         </div>        
       </div>
-    </div>
+    // </div>
   );
 }
 

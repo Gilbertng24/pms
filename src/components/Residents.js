@@ -4,7 +4,9 @@ import ResidentList from "./ResidentList";
 import FilterButton from "./FilterButton";
 import Resident from "./Resident";
 
-function Residents(){
+function Residents(props){
+  // console.log("############");
+  // console.log(props);
   const { translate } = useLanguage();
   // const [firstName,setFirstName] = useState("");
   // const [lastName,setLastName] = useState("");
@@ -14,8 +16,10 @@ function Residents(){
   const [activeRowId, setActiveRowId] = useState(0); // 0 means no active row, as the first row id started from 1.
   const [filteredResidents, setFilteredResident] = useState([]);
   const [resident, setResident] = useState({}); //initial empty object
+  const [searchValue, setSearchValue] = useState("");
 
-//console.log(filteredResidents);
+console.log("**********");
+console.log(props.location.state.prop.searchValue);
 
 
 
@@ -38,6 +42,58 @@ function Residents(){
   useEffect(()=>{
     localStorage.setItem('pms_residents', JSON.stringify(residents))
   },[residents])
+
+
+//   useEffect(() => {
+
+// console.log("----");
+// console.log(props);
+// console.log(searchValue);
+
+//     setSearchValue(props.location.state.prop.searchValue);
+
+//     if (searchValue != ""){
+
+// console.log("-=====-");
+// console.log(searchValue);
+
+//       const searchList = residents.map((resident) => {
+//         return (resident.firstName.toLowerCase().includes(searchValue.toLowerCase()))
+//       });
+
+//       console.log(searchList);
+
+//       setFilteredResident(searchList);
+//     }
+
+//   },[props.location.state.prop.searchValue])
+
+
+useEffect(() => {
+
+      if (props.location.state.prop.searchValue === ""){
+        setFilteredResident(residents);
+      }
+      else {
+  console.log("-=====-");
+  console.log(props.location.state.prop.searchValue);
+  
+        const searchList = residents.filter((resident) => {
+          return (resident.firstName.toLowerCase().includes(props.location.state.prop.searchValue.toLowerCase()) || 
+                  resident.lastName.toLowerCase().includes(props.location.state.prop.searchValue.toLowerCase()) || 
+                  resident.phoneNo.toLowerCase().includes(props.location.state.prop.searchValue.toLowerCase()) || 
+                  resident.email.toLowerCase().includes(props.location.state.prop.searchValue.toLowerCase()))
+        });
+  
+        console.log(resident);
+        console.log(searchList);
+  
+        setFilteredResident(searchList);
+      }
+
+  
+    },[residents, props.location.state.prop.searchValue])
+
 
   const updateIsUpdating = (status) => {
     setIsUpdating(status)

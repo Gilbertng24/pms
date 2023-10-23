@@ -6,7 +6,7 @@
     "locker": "Casier",
     "fob": "Gousset",
     "about": "À propos",
-    "search": "Recherche",
+    "search": "Recherche de résidents",
     "go": "Aller"
   },
   "residents": {
@@ -75,5 +75,11 @@
   "adviceItem": {
     "advice": "Conseils d'aujourd'hui",
     "forYou": "Pour toi"
+  },
+  "activeBus": {
+    "activeBus": "Autobus actif",
+    "destination": "Destination",
+    "routeNo": "Numéro d'itinéraire",
+    "vehicleNo": "Numéro de véhicule"
   }
 }
