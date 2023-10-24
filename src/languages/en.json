@@ -80,6 +80,13 @@
     "activeBus": "Active Bus",
     "destination": "Destination",
     "routeNo": "Route No",
-    "vehicleNo": "Vehicle No"
+    "vehicleNo": "Vehicle No",
+    "errorMessage": "Please try again later"
+  },
+  "about": {
+    "author": "Gilbert Ng",
+    "heading": "This is a react application.",
+    "pms": "Property Management System (PMS)",
+    "description": "A well-designed system for managing resident informations."
   }
 }

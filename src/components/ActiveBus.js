@@ -1,48 +1,46 @@
 import React from "react";
 import { useLanguage } from "./LanguageProvider";
-// import { nanoid } from "nanoid";
-// import { format } from 'date-fns-tz';
 
 function ActiveBus(props){
   const { translate } = useLanguage();
-  // const dateTimeFormat = 'MMMM dd, yyyy HH:mm:ss';
-  // const vancouverTimeZone = 'America/Vancouver';
-
-console.log(props);
-
-  //id, destination, routeNo, vehicleNo
-//console.log(props);  
   return (    
-    // <div className="row">
-      <div className="col">
-        {/* <h1 className="container mt-4">{`Stop No: ${props.stopNo}`}</h1> */}
-        <div className="card" style={{width: "400px"}}>
-          <div className="card-header  mt-4 fw-bold bg-primary text-white">
-            {`Stop No: ${props.stopNo}`}
-          </div>
-          {/* <img className="card-img" src="https://pixelprowess.com/i/mug-rex.jpg" alt="Oscar" /> */}
-          <div className="card-body">
-            <h5 className="card-title">{translate("activeBus.activeBus")}</h5>
-            {/* <h5 className="card-subtitle">Mayor of Binaryville</h5> */}
+    <div className="col">
+      <div className="card" style={{width: "400px"}}>
+        <div className="card-header  mt-4 fw-bold bg-primary text-white">
+          {`Stop No: ${props.stopNo}`}
+        </div>
+        <div className="card-body">
+          <h5 className="card-title">{translate("activeBus.activeBus")}</h5>
             {
-              props.data == null ? "" : props.data === "error" ? <p>Try again later</p> :
-                props.data.map((route) => {
-                  return (
-                    <p className="card-text lh-sm" key={route.id}>
-                      {translate("activeBus.destination")}: {route.destination} - {translate("activeBus.routeNo")}: {route.routeNo} - {translate("activeBus.vehicleNo")}: {route.vehicleNo}
-                    </p>
-                  )
-                })
+              <div className="table-responsive-lg">
+                <table className="table table-info table-hover table-striped table-bordered border-primary caption-top">
+                  <thead> 
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">{translate("activeBus.destination")}</th>
+                      <th scope="col">{translate("activeBus.routeNo")}</th>
+                      <th scope="col">{translate("activeBus.vehicleNo")}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      props.data == null ? <tr><td colSpan="4"></td></tr> : props.data === "error" ? <tr><td colSpan="4">{translate("errorMessage")}</td></tr> :
+                        props.data.map((route) => {       
+                          return (
+                            <tr key={`${route.id}`}>
+                              <th scope="row">{route.id}</th>
+                              <td>{route.destination}</td>
+                              <td>{route.routeNo}</td>
+                              <td>{route.vehicleNo}</td>
+                            </tr> 
+                        )})}
+                  </tbody>
+                </table>
+              </div>
             }
-            <p className="card-text lh-sm"></p>
-            {/* <a href="#" className="card-link">more info</a> */}
           </div>
-          {/* <div className="card-footer">
-            Now on sale
-          </div>  */}
         </div>
       </div>
-    // </div>
   );
 }
 
