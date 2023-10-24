@@ -13,7 +13,13 @@ function About(){
             <div className="card-header">
               {translate("about.heading")}
             </div>
-            <img className="card-img" src={dog1} alt="Oscar" />
+            <div>
+              <img className="card-img" src={dog1} alt="Oscar" />
+              <p className="fst-italic">{translate("about.imageSource")}</p>
+            </div>
+            {/* <div className="bg-img">
+              <p>{translate("about.imageSource")}</p>
+            </div> */}
             <div className="card-body">
               <h5 className="card-title">{translate("about.pms")}</h5>
               <p className="card-text lh-sm">{translate("about.description")}</p>

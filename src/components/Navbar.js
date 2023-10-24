@@ -32,7 +32,7 @@ function Navbar(){
         </div>
         <div className="collapse navbar-collapse" id="navbar_pms_toggler">
           <div className="navbar-nav navbar-nav-scroll ms-auto">
-            <Link to="/" className="nav-item nav-link active" aria-current="page">{translate("navbar.home")}</Link>
+            <Link to="/pms" className="nav-item nav-link active" aria-current="page">{translate("navbar.home")}</Link>
             <Link to={{
                 pathname: '/residents',
                 state: {

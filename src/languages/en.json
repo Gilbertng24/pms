@@ -87,6 +87,7 @@
     "author": "Gilbert Ng",
     "heading": "This is a react application.",
     "pms": "Property Management System (PMS)",
-    "description": "A well-designed system for managing resident informations."
+    "description": "A well-designed system for managing resident informations.",
+    "imageSource": "Image source: Microsoft stock image."
   }
 }

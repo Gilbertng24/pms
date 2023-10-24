@@ -54,3 +54,20 @@
   font-size: smaller;
   font-weight: bold;
 }
+
+.bg-img {
+  background-image: url("./images/dog1.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 350px;
+  height: 250px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.bg-img>p {
+  background-color: rgba(171, 187, 199, 0.7);
+  padding: 10px;
+  color: rgb(22, 22, 22);
+}
