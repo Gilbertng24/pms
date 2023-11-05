@@ -15,29 +15,19 @@ function FilterButton({updateIsUpdating, updateFilter, setResidentMode, setResid
 
   const updateFirstName = (e) => {
     setFirstName(e.target.value);
-    //updateFilter("firstName", e.target.value);
     setFilterData({...filterData, firstName: e.target.value});
-    console.log(firstName);
-    console.log('----------');    
-console.log(filterData);
   }
   const updateLastName = (e) => {
     setLastName(e.target.value);
-    //updateFilter("lastName", e.target.value);
     setFilterData({...filterData, lastName: e.target.value});
-    //updateFilter(filterData);
   }
   const updatePhoneNo = (e) => {
     setPhoneNo(e.target.value);
-    //updateFilter("phoneNo", e.target.value);
     setFilterData({...filterData, phoneNo: e.target.value});
-    //updateFilter(filterData);
   }
   const updateEmail = (e) => {
     setEmail(e.target.value);
-    //updateFilter("email", e.target.value);
     setFilterData({...filterData, email: e.target.value});
-    //updateFilter(filterData);
   }
 
   const clearFilter = () => {
@@ -59,7 +49,6 @@ console.log(filterData);
 
   return (
     <>
-
       {/* Filter and new resident button */}
       <div className="row mt-5 border-bottom border-danger">
         <div className="col mt-4 fw-bold">
@@ -145,9 +134,7 @@ console.log(filterData);
             </button>
           </div>
         </div>
-
       </div>
-
     </>
   )
 }

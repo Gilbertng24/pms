@@ -50,8 +50,6 @@ function News(){
       //   headers: headers,
       // });
 
-  console.log("........*.......")
-  console.log(res.data.articles);
       const newsList = res.data.articles.map((article, index) => {return {id: index, author : article.author, title: article.title, publishedAt: article.publishedAt}});
       //setAppState({ loading: false, newsList: res.data.articles.slice(0,4) });
       setAppState({ loading: false, newsList: newsList});
@@ -96,8 +94,6 @@ function News(){
       return () => clearInterval(intervalId);
     }
   }, [currentIndex, appState.newsList]);
-
-  //console.log(currentItem);
 
   return (
     <div className="fixed-bottom">

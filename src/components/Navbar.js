@@ -1,19 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Link} from 'react-router-dom';
-import Home from "./Home";
-import About from "./About";
 import { useLanguage } from './LanguageProvider';
 
 function Navbar(){
   const { language, changeLanguage } = useLanguage();
   const { translate } = useLanguage();
   const [ searchValue, setSearchValue] = useState("");
-
-  // useEffect(() => {
-  //   // This function will run when the component is first loaded
-  //   console.log('Navbar.....Page has been refreshed or loaded for the first time');
-  // }, []);
-
   const searchResident = () => {
     <Link to="/residents"></Link>
   }
@@ -43,8 +35,6 @@ function Navbar(){
             >
               {translate("navbar.resident")}
             </Link>
-            {/* <Link to="/Fob" className="nav-item nav-link">{translate("navbar.fob")}</Link>
-            <Link to="/Locker" className="nav-item nav-link">{translate("navbar.locker")}</Link> */}
             <Link to="/about" className="nav-item nav-link">{translate("navbar.about")}</Link>
             <Link to="/documentation" className="nav-item nav-link">{translate("navbar.documentation")}</Link>
 

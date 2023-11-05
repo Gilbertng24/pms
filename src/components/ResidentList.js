@@ -1,29 +1,23 @@
 import React, {useState, useRef} from "react";
 import { useLanguage } from "./LanguageProvider";
 
-
 function ResidentList({residents, activeRowId, editResident, viewResident, deleteResident}){
   const { translate } = useLanguage();
   const [residentId,setResidentId] = useState("");
   const noOfResidentHeading = residents.length <= 1 ? `${residents.length} ${translate("residents.resident")}` : `${residents.length} ${translate("residents.residents")}`;
   const modalCancelButtonRef = useRef(null);
-
   const residentEdit = (resident) => {
     editResident(resident);
-    //console.log("edit.." + id);
   }
 
   const residentView = (resident) => {
     viewResident(resident);
-    //console.log("view.." + id);
   }
 
   const residentDelete = (id) => {
     deleteResident(id);
-    //close the modal dialog
     modalCancelButtonRef.current.click();
   }
-
 
   const confirmModal = (
     <div className="modal fade" id="deleteConfirmModal" tabIndex="-1" aria-labelledby="deleteConfirmModalLabel" aria-hidden="true">
@@ -47,13 +41,9 @@ function ResidentList({residents, activeRowId, editResident, viewResident, delet
 
   return (
     <>
-
-
       {/* List of residents */}
       <div className="table-responsive-lg mt-5 mb-5">
-
         {confirmModal}
-
         <table className="table table-info table-hover table-striped table-bordered border-primary caption-top">
           <caption className="fw-bold">{noOfResidentHeading}</caption>
           <thead> 
@@ -87,18 +77,6 @@ function ResidentList({residents, activeRowId, editResident, viewResident, delet
                   </td>    
                 </tr> 
             ))}
-   
-            
-            {/* <tr>
-              <th scope="row">3</th>
-              <td colSpan="2">Larry the Bird</td>
-              <td>@twitter</td>
-              <td>           
-                <button type="button" className="btn btn-light me-2"><i className="bi bi-wrench text-primary"></i></button>
-                <button type="button" className="btn btn-light me-2"><i className="bi bi-ticket-detailed-fill text-success"></i></button>
-                <button type="button" className="btn btn-light me-2"><i className="bi bi-trash-fill text-danger"></i></button>
-              </td>
-            </tr> */}
           </tbody>
         </table>
       </div>

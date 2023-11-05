@@ -1,24 +1,16 @@
 import React, {useState} from "react";
 import { useLanguage } from "./LanguageProvider";
-import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
+import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import { useEffect } from "react";
 
 function Resident({updateIsUpdating, updateNewResident, mode, activeRowId, editResident, viewResident, resident, updateResident}){
-
-console.log(".....");
-console.log(mode);
-console.log(activeRowId);
-console.log(resident);
-console.log(Object.keys(resident));
-
   const [readOnly, setReadOnly] = useState(true);  
   const [id,setId] = useState(0);
   const [firstName,setFirstName] = useState("");
   const [lastName,setLastName] = useState("");
   const { translate } = useLanguage();
   const [title, setTitle] = useState("");
-
   const genderOptions = [
     {value: '', text: `${translate("resident.gender.options")}`},
     {value: 'Male', text: `${translate("resident.gender.male")}`},
@@ -34,7 +26,6 @@ console.log(Object.keys(resident));
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    //console.log(firstName + "... " + lastName);      
     updateIsUpdating(false);  
     mode === "new" ? 
       updateNewResident(firstName, lastName, gender, phoneNo, email, description)
@@ -66,7 +57,6 @@ console.log(Object.keys(resident));
 
   const setDefault = () => {
     if (Object.keys(resident).length !== 0){   
-      //console.log("ooooooo"); 
       setFirstName(resident.firstName);
       setLastName(resident.lastName);
       setGender(resident.gender);
@@ -96,10 +86,7 @@ console.log(Object.keys(resident));
     else {
       setReadOnly(true);
     }
-
   },[]);
-
-
 
   return (
     <div className="container mb-8">
@@ -107,10 +94,8 @@ console.log(Object.keys(resident));
         <div className="mt-5 mb-5">
           <h1>{title}</h1>
         </div>      
-
         <fieldset className="col-md-8 mx-auto">
           <legend className="legend-left">{translate("resident.personalInformation")}</legend>
-
           <div className="row">
             <div className="col">
               <div className="form-floating mb-3">
@@ -147,10 +132,6 @@ console.log(Object.keys(resident));
             <div className="col">
               <div className="form-floating mb-3">
                 <select value={gender} onChange={genderChange} className="form-select" id="gender" aria-label="gender options" disabled={readOnly}>
-                  {/* <option selected>Choose...</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Unknown">Unknown</option> */}
                   {genderOptions.map((gender) => (
                     <option 
                       value={gender.value} 
@@ -241,7 +222,6 @@ console.log(Object.keys(resident));
             {translate("resident.editResident")}
           </button>
         }
-
         <button 
           type="button" 
           className="btn btn-primary"
@@ -249,12 +229,8 @@ console.log(Object.keys(resident));
         >
           {translate("resident.cancel")}
         </button>
-
       </form>
     </div>
-
-
-
   )
 }
 

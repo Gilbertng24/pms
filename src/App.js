@@ -10,12 +10,6 @@ import Residents from './components/Residents';
 import Documentation from './components/Documentation';
 
 function App() {
-
-  useEffect(() => {
-    // This function will run when the component is first loaded
-    console.log('App.....Page has been refreshed or loaded for the first time');
-  }, []);
-
   return (
     <div className="App">
       <Navbar />
