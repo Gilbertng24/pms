@@ -127,7 +127,7 @@ useEffect(() => {
     setFilteredResident(updateList);
   }
 
-  const updateFilter = (key, value) => {
+  const updateFilter2 = (key, value) => {
     console.log("key:" + key);
     console.log("value:" + value);
     //console.log("updateFilterFirstName...." + firstName);
@@ -158,6 +158,50 @@ useEffect(() => {
     })
     setFilteredResident(filteredList);
   }
+
+  const updateFilter = (filterData) => {
+   
+    //console.log("filterData:" + filterData.firstName);
+ 
+    //update the filter by the firstName
+    const filteredList = residents.filter((resident) => {
+      return ((!filterData.firstName || resident.firstName.toLowerCase().includes(filterData.firstName.toLowerCase())) && 
+              (!filterData.lastName || resident.lastName.toLowerCase().includes(filterData.lastName.toLowerCase())) && 
+              (!filterData.phoneNo || resident.phoneNo.toLowerCase().includes(filterData.phoneNo.toLowerCase())) && 
+              (!filterData.email || resident.email.toLowerCase().includes(filterData.email.toLowerCase())) 
+      );
+    //   let list = [];
+    //   let condition = "";
+    //   if (filterData.firstName !== ""){
+    //     condition = condition + resident.firstName.toLowerCase().includes(filterData.firstName.toLowerCase());
+
+    //     // list.length !== 0 ? 
+    //     // list = list.firstName.toLowerCase().includes(filterData.firstName.toLowerCase()) :
+    //     // list = resident.firstName.toLowerCase().includes(filterData.firstName.toLowerCase());
+    //   }
+    //   if (filterData.lastName !== ""){
+    //     condition = condition + resident.lastName.toLowerCase().includes(filterData.lastName.toLowerCase());
+    //     // list.length !== 0 ? 
+    //     //   list = list.lastName.toLowerCase().includes(filterData.lastName.toLowerCase()) :
+    //     //   list = resident.lastName.toLowerCase().includes(filterData.lastName.toLowerCase());
+    //   }
+    //   if (filterData.phoneNo !== ""){
+    //     condition = condition + resident.phoneNo.toLowerCase().includes(filterData.phoneNo.toLowerCase());
+    //     // list.length !== 0 ? 
+    //     //   list = list.phoneNo.toLowerCase().includes(filterData.phoneNo.toLowerCase()) :
+    //     //   list = resident.phoneNo.toLowerCase().includes(filterData.phoneNo.toLowerCase());
+    //   }
+    //   if (filterData.email !== ""){
+    //     condition = condition + resident.email.toLowerCase().includes(filterData.email.toLowerCase());
+    //     // list.length !== 0 ? 
+    //     //   list = list.email.toLowerCase().includes(filterData.email.toLowerCase()) :
+    //     //   list = resident.email.toLowerCase().includes(filterData.email.toLowerCase());
+    //   }
+    //   return list;
+    })
+    setFilteredResident(filteredList);
+  }
+
 
   const deleteResident = (id) => {
     console.log("deleteResident:" + id);

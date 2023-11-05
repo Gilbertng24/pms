@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useLanguage } from "./LanguageProvider";
 
 function FilterButton({updateIsUpdating, updateFilter, setResidentMode, setResidentActiveRowId}){
@@ -7,22 +7,37 @@ function FilterButton({updateIsUpdating, updateFilter, setResidentMode, setResid
   const [lastName,setLastName] = useState("");
   const [phoneNo,setPhoneNo] = useState("");
   const [email,setEmail] = useState("");
+  const [filterData, setFilterData] = useState({firstName: "", lastName: "", phoneNo: "", email: ""});
+
+  useEffect(()=>{
+    updateFilter(filterData);
+  },[filterData]);
 
   const updateFirstName = (e) => {
     setFirstName(e.target.value);
-    updateFilter("firstName", e.target.value);
+    //updateFilter("firstName", e.target.value);
+    setFilterData({...filterData, firstName: e.target.value});
+    console.log(firstName);
+    console.log('----------');    
+console.log(filterData);
   }
   const updateLastName = (e) => {
     setLastName(e.target.value);
-    updateFilter("lastName", e.target.value);
+    //updateFilter("lastName", e.target.value);
+    setFilterData({...filterData, lastName: e.target.value});
+    //updateFilter(filterData);
   }
   const updatePhoneNo = (e) => {
     setPhoneNo(e.target.value);
-    updateFilter("phoneNo", e.target.value);
+    //updateFilter("phoneNo", e.target.value);
+    setFilterData({...filterData, phoneNo: e.target.value});
+    //updateFilter(filterData);
   }
   const updateEmail = (e) => {
     setEmail(e.target.value);
-    updateFilter("email", e.target.value);
+    //updateFilter("email", e.target.value);
+    setFilterData({...filterData, email: e.target.value});
+    //updateFilter(filterData);
   }
 
   const clearFilter = () => {

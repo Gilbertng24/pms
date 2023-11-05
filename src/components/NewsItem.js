@@ -8,7 +8,8 @@ function NewsItem(props){
 
 //console.log(props);  
   return (    
-    <div className="container-fluid position-absolute bottom-0 start-0 bg-primary">
+    // <div className="container-fluid position-absolute bottom-0 start-0 bg-primary">
+    <div className="position-fixed bottom-0 start-0 bg-primary w-100">
       <footer className="text-start text-lg-start text-white">
         <div className="text-left p-3" key={nanoid()}>
           {/* <span className="fw-bold bg-info text-danger fw-bold">{(props === null || props.news === null || props.news.author === null) ? null : props.news.author}:</span> */}

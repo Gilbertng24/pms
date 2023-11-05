@@ -46,6 +46,7 @@ function Navbar(){
             {/* <Link to="/Fob" className="nav-item nav-link">{translate("navbar.fob")}</Link>
             <Link to="/Locker" className="nav-item nav-link">{translate("navbar.locker")}</Link> */}
             <Link to="/about" className="nav-item nav-link">{translate("navbar.about")}</Link>
+            <Link to="/documentation" className="nav-item nav-link">{translate("navbar.documentation")}</Link>
 
             {/* button for toggling between English and French */}
             <button className="btn btn-outline-light" onClick={() => changeLanguage(language === "en" ? "fr" : "en")}>

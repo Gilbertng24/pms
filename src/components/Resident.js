@@ -102,7 +102,7 @@ console.log(Object.keys(resident));
 
 
   return (
-    <div className="container">
+    <div className="container mb-8">
       <form onSubmit={handleSubmit}>
         <div className="mt-5 mb-5">
           <h1>{title}</h1>

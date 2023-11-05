@@ -5,7 +5,8 @@
     "resident": "Resident",
     "locker": "Locker",
     "fob": "Fob",
-    "about": "about",
+    "about": "About",
+    "documentation": "Documentation",
     "search": "Resident Search",
     "go": "Go"
   },
@@ -89,5 +90,41 @@
     "pms": "Property Management System (PMS)",
     "description": "A well-designed system for managing resident informations.",
     "imageSource": "Image source: Microsoft stock image."
+  },
+  "documentation": {
+    "introduction": "Introduction",
+    "introductionContent": "Gilbert's Property Management System primarily focuses on overseeing resident information. However, its capabilities can be expanded to encompass a wider range of property-related data, including but not limited to towers, units, facilities (such as swimming pools, gym rooms, and lockers), parking slots, and even the resolution of resident-related issues.",
+    "design": "Design",
+    "designContent": "At the page's header, you'll find the navigation bar for accessing various functions. In the middle, the relevant information of the active page is displayed. At the footer, you'll always see the latest news, which is fetched from a public API and presented with rotating news headlines.",
+    "navigationBar": "Navigation Bar",
+    "navigationBarContent": {
+      "home": "Home",
+      "homeIntroduction": "This link to the home view, it shows two updated information which got from public API.",
+      "homeAdvice": "1. Advice of today: This is random advice from a public API.",
+      "homeBusStop": "2. Bus stop active bus: This is the information of the buses which are coming to the bus stop. It is gotten from Translink API.",
+      "resident": "Resident",
+      "residentIntroduction": "This link to the resident view, it shows the lists of the residents information, and a set of filters for filtering the result of the resident list. And there are control buttons for creating new resident, editing, viewing or deleting.",
+      "residentFilterFirstName": "First Name: This is an input field for filtering the first name",
+      "residentFilterLastName": "Last Name: This is an input field for filtering the last name",
+      "residentFilterPhoneNo": "Phone Number: This is an input field for filtering the phone number",
+      "residentFilterEmail": "Email: This is an input field for filtering the email",
+      "residentFilterClearFilter": "Clear Filter: This is for clearing all the input filter fields",
+      "residentNewResident": "New Resident: This leads to the new resident form for creating new resident",
+      "residentActionEdit": "Edit: This leads to the resident edit view which can edit every fields",
+      "residentActionView": "View: This leads to the resident view for viewing only which all the fields are disabled.",
+      "residentActionDelete": "Delete: It props up an confirm dialog for confirming deleting or not, if confirmed, the resident is deleted. If cancel, it backs to the list of the residents.",
+      "about": "About",
+      "aboutIntroduction": "This link to the above view, it shows the author information, the brief introduction of the system and what technologies used to develop this project.",
+      "documentation": "Documentation",
+      "documentationIntroduction": "This document.",
+      "language": "Language",
+      "languageIntroduction": "This toggle button switch between English and French. Default is English.",
+      "search": "Search",
+      "residentSearch": "Resident Search",
+      "residentSearchIntroduction": "This input field is for searching residents by providing first name, last name, phone number or email",
+      "go": "Go",
+      "goIntroduction": "This button is showing the results of the searching criteria which entered in the resident search field."
+    }
   }
+
 }

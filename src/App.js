@@ -7,6 +7,7 @@ import About from './components/About';
 import Error from './components/Error';
 import News from './components/News';
 import Residents from './components/Residents';
+import Documentation from './components/Documentation';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         {/* <Route path="/" component={Home} exact /> */}
         <Route path="/pms" component={Home} />
         <Route path="/about" component={About} />
+        <Route path="/documentation" component={Documentation} />
         <Route path="/residents" component={Residents} />
         <Route component={Error} />
       </Switch>

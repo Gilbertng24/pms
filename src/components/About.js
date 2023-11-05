@@ -5,7 +5,7 @@ import { useLanguage } from "./LanguageProvider";
 function About(){
   const { translate } = useLanguage();  
   return (
-    <div className="container">
+    <div className="container mb-8">
       <div className="row justify-content-center">
         <div className="col-md-6">
           <h1 className="container justify-content-center mt-4">{translate("about.author")}</h1>

@@ -6,6 +6,7 @@
     "locker": "Casier",
     "fob": "Gousset",
     "about": "À propos",
+    "documentation": "Documentation",
     "search": "Recherche de résidents",
     "go": "Aller"
   },
@@ -89,5 +90,13 @@
     "pms": "Système de gestion immobilière (PMS)",
     "description": "Un système bien conçu pour gérer les informations des résidents.",
     "imageSource": "Source de l’image : image stock Microsoft."
+  },
+  "documentation": {
+    "introduction": "Introduction",
+    "introductionContent": "Le système de gestion immobilière de Gilbert se concentre principalement sur la supervision des informations sur les résidents. Cependant, ses capacités peuvent être étendues pour englober un plus large éventail de données liées à la propriété, y compris, sans toutefois s'y limiter, les tours, les unités, les installations (telles que les piscines, les salles de sport et les casiers), les emplacements de stationnement et même la résolution des problèmes des résidents. -problèmes liés.",
+    "design": "Conception",
+    "designContent": "En en-tête de la page, vous trouverez la barre de navigation permettant d'accéder à diverses fonctions. Au milieu, les informations pertinentes de la page active sont affichées. Au pied de page, vous verrez toujours les dernières nouvelles, qui sont récupérées à partir d'une API publique et présentées avec des titres d'actualité en rotation.",
+    "navigationBar": "Barre de navigation",
+    "navigationBarContent": ""
   }
 }

@@ -10,7 +10,8 @@ function Home(){
   const fectDataInterval = 1800000; // 1800,000 milliseconds (1800 seconds = 30 mins)
   const ratateNewsItemInterval = 5000; //5 seconds
   const translinkApiKey = 'bR8iPRq64PPyp5iIYoSd';
-  const translinkStopNo = 52030; //E 49 Ave @Main St
+  //const translinkStopNo = 52030; //E 49 Ave @Main St
+  const translinkStopNo = 60970; //Nearby Cosco Richmond, BC.
 
   const [adviceState, setAdviceState] = useState({
     loading: false,

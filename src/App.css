@@ -71,3 +71,18 @@
   padding: 10px;
   color: rgb(22, 22, 22);
 }
+
+/* .document-tab{
+  background-color: #8ab9f2; 
+  color: #070707; 
+} */
+
+.nav-tabs .nav-item .nav-link.active {
+  background-color: #4734c4; 
+  color: #fff; 
+  font-weight: bold;
+}
+
+/* .tab-pane .card .card-header {
+  background-color: #2505f7; 
+} */
